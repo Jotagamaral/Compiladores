@@ -1,0 +1,16 @@
+// Meu primeiro programa de teste
+int resultado = 0;
+int valor = 100;
+
+while (valor > 0) {
+    resultado = resultado + valor;
+    valor = valor - 1; // decrementa o valor
+}
+
+if (resultado == 4950) {
+    return 1;
+} else {
+    return 0;
+}
+
+// Fim do teste. Testando um caractere inválido: @
