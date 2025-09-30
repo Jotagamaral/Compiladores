@@ -1,0 +1,15 @@
+program Teste {
+    final int x = 10;
+    class MinhaClasse {
+        int a, b;
+    }
+    void metodo(int p) {
+        a = p;
+        if (a == 10) {
+            print(a, 1);
+        } else {
+            read(a);
+        }
+        return;
+    }
+}
