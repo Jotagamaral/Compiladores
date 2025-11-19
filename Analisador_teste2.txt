@@ -1,3 +1,0 @@
-final int x = 10;
-final int y = 5;
-print (x, y);

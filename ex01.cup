@@ -1,0 +1,36 @@
+import java_cup.runtime.*;
+
+/* 1. Definição dos Terminais (Tokens) */
+/* Note que definimos 'Integer' para o INTEIRO, para ele carregar o número */
+terminal PTVIRG, MAIS, MENOS;
+terminal Integer INTEIRO; 
+
+/* 2. Definição dos Não-Terminais */
+/* Definimos que essas expressões retornam um objeto do tipo Integer */
+non terminal Object expr_list;
+non terminal Integer expr_ptv, expr;
+
+/* 3. Gramática com Ações Semânticas */
+
+/* A lista de expressões apenas propaga o resultado da última */
+expr_list ::= expr_list expr_ptv:e {: RESULT = e; :}
+            | expr_ptv:e           {: RESULT = e; :}
+            ;
+
+/* Uma expressão seguida de ponto e vírgula retorna o valor da expressão */
+expr_ptv ::= expr:e PTVIRG {: RESULT = e; :};
+
+/* A mágica acontece aqui: SOMA e SUBTRAÇÃO */
+expr ::= INTEIRO:n1 MAIS expr:n2
+         {: 
+             RESULT = n1 + n2; 
+         :}
+       | INTEIRO:n1 MENOS expr:n2
+         {: 
+             RESULT = n1 - n2; 
+         :}
+       | INTEIRO:n
+         {: 
+             RESULT = n; 
+         :}
+       ;
