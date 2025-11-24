@@ -1,0 +1,59 @@
+import java_cup.runtime.*;
+
+/* -----------------------------------------------------------
+   CÓDIGO DO PARSER
+   Conecta o Parser ao Scanner (Analisador) gerado pelo JFlex
+   ----------------------------------------------------------- */
+parser code {:
+    public parser(java.io.Reader input) {
+        // Inicializa o Scanner passando o Reader
+        super(new Analisador(input));
+    }
+:};
+
+/* -----------------------------------------------------------
+   DEFINIÇÃO DOS TERMINAIS (TOKENS)
+   Estes nomes devem corresponder ao que o Flex vai retornar
+   através da classe 'sym'.
+   ----------------------------------------------------------- */
+
+/* Palavras-chave (sem valor associado, apenas o tipo) */
+terminal KEYWORDPROG, KEYWORDFINAL, KEYWORDCLASS, KEYWORDVOID;
+terminal KEYWORDIF, KEYWORDELSE, KEYWORDWHILE, KEYWORDRETURN;
+terminal KEYWORDREAD, KEYWORDPRINT, KEYWORDNEW;
+
+/* Tokens que carregam valores (String, Inteiro, etc.) */
+/* Defini como String para generalizar, mas NUMBER poderia ser Integer */
+terminal String IDENT;
+terminal String NUMBER;
+terminal String CHARCONST;
+
+/* Operadores Agrupados (Conforme seu Flex) */
+/* OBS: Isso pode dificultar a gramática, veja nota abaixo */
+terminal String RELOP;  // ==, !=, >=, etc.
+terminal String ADDOP;  // +, -
+terminal String MULOP;  // *, /, %
+terminal String SYMBOL; // {, }, (, ), ;, etc.
+terminal OTHER;         // Caso capture caracteres inválidos
+
+/* -----------------------------------------------------------
+   DEFINIÇÃO DOS NÃO-TERMINAIS
+   (Aqui entraria a lógica da sua gramática)
+   ----------------------------------------------------------- */
+non terminal Object programa;
+non terminal Object lista_comandos;
+
+/* -----------------------------------------------------------
+   GRAMÁTICA (Exemplo Básico)
+   Como seu Flex agrupa muitos símbolos, a gramática fica genérica
+   ----------------------------------------------------------- */
+
+start with programa;
+
+programa ::= KEYWORDPROG IDENT SYMBOL lista_comandos SYMBOL
+             {: System.out.println("Programa reconhecido!"); :}
+           | error
+           ;
+
+lista_comandos ::= /* Vazio */
+                 ;
