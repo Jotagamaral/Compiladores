@@ -1,0 +1,75 @@
+import java_cup.runtime.*;
+
+/* TERMINAIS */
+/* Note que os nomes aqui batem com o Scanner (ABRE_PARENT) */
+terminal PTVIRG, MAIS, MENOS, MULT, DIV, MOD, ABRE_PARENT, FECHA_PARENT;
+terminal Double NUMBER;
+
+/* NAO TERMINAIS */ 
+/* Correção: Sem espaços nos nomes */
+non terminal Object expr_list;
+non terminal Double expr_ptv, expr, term, factor;
+
+/* PRECEDÊNCIA (Opcional, mas ajuda a evitar conflitos) */
+precedence left MAIS, MENOS;
+precedence left MULT, DIV, MOD;
+
+/* GRAMÁTICA */
+
+/* Lista de expressões */
+expr_list ::= expr_list expr_ptv 
+            | expr_ptv
+            ;
+
+/* Expressão seguida de ponto e vírgula */
+expr_ptv ::= expr:e PTVIRG {: 
+                System.out.println("Resultado Final = " + e); 
+                RESULT = e; 
+             :}
+             ;
+
+/* Regras de Soma e Subtração */
+expr ::= expr:e MAIS term:t {:
+            double val = e + t;
+            System.out.println("Soma: " + e + " + " + t + " = " + val);
+            RESULT = val;
+         :} 
+       | expr:e MENOS term:t {:
+            double val = e - t;
+            System.out.println("Sub: " + e + " - " + t + " = " + val);
+            RESULT = val;
+         :} 
+       | term:t {: 
+            RESULT = t; 
+         :}
+       ;
+
+/* Regras de Multiplicação e Divisão */
+term ::= term:t MULT factor:f {:
+            double val = t * f;
+            System.out.println("Mult: " + t + " * " + f + " = " + val);
+            RESULT = val;
+         :}
+       | term:t DIV factor:f {:
+            double val = t / f;
+            System.out.println("Div: " + t + " / " + f + " = " + val);
+            RESULT = val;
+         :}
+       | factor:f {: 
+            RESULT = f; 
+         :}
+       ;
+
+/* Fatores (Números ou Parênteses) */
+factor ::= NUMBER:n {: 
+             // O valor já vem como Double do Scanner, basta repassar
+             RESULT = n; 
+           :}
+         | ABRE_PARENT expr:e FECHA_PARENT {: 
+             RESULT = e; 
+           :}
+         | MENOS factor:f {: 
+             // Menos unário (ex: -5)
+             RESULT = -f; 
+           :}
+         ;

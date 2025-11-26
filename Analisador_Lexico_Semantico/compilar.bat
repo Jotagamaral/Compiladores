@@ -14,7 +14,7 @@ if exist %BUILD_DIR% rmdir /s /q %BUILD_DIR%
 mkdir %CLASSES_DIR%
 mkdir %GEN_DIR%
 
-if not defined JFLEX_HOME set JFLEX_HOME=C:\Users\Admin\Documents\Compiladores\jflex-1.9.1\jflex-1.9.1
+if not defined JFLEX_HOME set JFLEX_HOME=C:\Users\jota.amaralmiranda\Documents\Jcup_Trabalho\Compiladores\jflex-1.9.1
 if not defined JFLEX_VERSION set JFLEX_VERSION=1.9.1
 
 

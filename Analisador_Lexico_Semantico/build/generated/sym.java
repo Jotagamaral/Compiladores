@@ -6,49 +6,29 @@
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int ADDOP = 17;
-  public static final int KEYWORDREAD = 10;
-  public static final int KEYWORDRETURN = 9;
-  public static final int KEYWORDELSE = 7;
-  public static final int RELOP = 16;
-  public static final int IDENT = 13;
-  public static final int SYMBOL = 19;
-  public static final int KEYWORDNEW = 12;
-  public static final int MULOP = 18;
-  public static final int KEYWORDFINAL = 3;
-  public static final int KEYWORDPRINT = 11;
+  public static final int FECHA_PARENT = 9;
+  public static final int MAIS = 3;
+  public static final int PTVIRG = 2;
+  public static final int MENOS = 4;
+  public static final int NUMBER = 10;
+  public static final int ABRE_PARENT = 8;
+  public static final int MULT = 5;
+  public static final int MOD = 7;
   public static final int EOF = 0;
-  public static final int NUMBER = 14;
-  public static final int CHARCONST = 15;
-  public static final int KEYWORDPROG = 2;
+  public static final int DIV = 6;
   public static final int error = 1;
-  public static final int KEYWORDIF = 6;
-  public static final int KEYWORDCLASS = 4;
-  public static final int OTHER = 20;
-  public static final int KEYWORDWHILE = 8;
-  public static final int KEYWORDVOID = 5;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "KEYWORDPROG",
-  "KEYWORDFINAL",
-  "KEYWORDCLASS",
-  "KEYWORDVOID",
-  "KEYWORDIF",
-  "KEYWORDELSE",
-  "KEYWORDWHILE",
-  "KEYWORDRETURN",
-  "KEYWORDREAD",
-  "KEYWORDPRINT",
-  "KEYWORDNEW",
-  "IDENT",
-  "NUMBER",
-  "CHARCONST",
-  "RELOP",
-  "ADDOP",
-  "MULOP",
-  "SYMBOL",
-  "OTHER"
+  "PTVIRG",
+  "MAIS",
+  "MENOS",
+  "MULT",
+  "DIV",
+  "MOD",
+  "ABRE_PARENT",
+  "FECHA_PARENT",
+  "NUMBER"
   };
 }
 

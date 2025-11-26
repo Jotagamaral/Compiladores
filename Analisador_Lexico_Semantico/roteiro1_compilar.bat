@@ -20,15 +20,15 @@ if not defined JFLEX_VERSION set JFLEX_VERSION=1.9.1
 
 echo [1/4] Gerando Analisador Lexico (JFlex)...
 :: CORREÇÃO: Chamamos o JAR direto. Adicionamos -d %GEN_DIR% para o arquivo ir para a pasta certa.
-java -Xmx128m -jar %JFLEX_HOME%\lib\jflex-full-%JFLEX_VERSION%.jar -d %GEN_DIR% %SRC_DIR%\teste.flex
+java -Xmx128m -jar %JFLEX_HOME%\lib\jflex-full-%JFLEX_VERSION%.jar -d %GEN_DIR% %SRC_DIR%\roteiro1_scanner.flex
 
 echo [2/4] Gerando Analisador Sintatico (Java Cup)...
 :: O -destdir joga os arquivos gerados na pasta gen
-java -jar %LIB_DIR%\java-cup-11b.jar -destdir %GEN_DIR% -parser parser -symbols sym %SRC_DIR%\ex02.cup
+java -jar %LIB_DIR%\java-cup-11b.jar -destdir %GEN_DIR% -parser parser -symbols sym %SRC_DIR%\roteiro1_parser.cup
 
 echo [3/4] Compilando arquivos Java...
 :: Compila o Main (do src) e o Scanner/Parser (do gen) jogando os .class no classes_dir
-javac -cp "%LIB_DIR%\java-cup-11b.jar" -d %CLASSES_DIR% %SRC_DIR%\Main.java %GEN_DIR%\*.java
+javac -cp "%LIB_DIR%\java-cup-11b.jar" -d %CLASSES_DIR% %SRC_DIR%\roteiro1_Main.java %GEN_DIR%\*.java
 
 echo [4/4] Executando...
 echo.
